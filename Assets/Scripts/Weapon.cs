@@ -8,6 +8,7 @@ public class Weapon : MonoBehaviour
 
     [SerializeField]Sprite sprite;
     [SerializeField]Player player;
+    public ParticleSystem shootParticle;
     public Transform frontOfWeapon;
     public GameObject projectile;
     public float projectileSpeed;
@@ -61,6 +62,7 @@ public class Weapon : MonoBehaviour
             GameObject _projectile = GameManager.spawnBullet(frontOfWeapon.position, transform.rotation, damage, projectileSpeed, projectileLifeTime, true);
             _projectile.transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + Random.Range(-accuracyDeg, accuracyDeg));
             timeSinceShoot = 0;
+            shootParticle.Emit(5);
         }
         timeSinceShoot += Time.deltaTime;
 

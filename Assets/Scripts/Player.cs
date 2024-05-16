@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class Player : MonoBehaviour
     [Header("Stats")]
     public float curHp;
     public float maxHp;
+    public Image hpIndicator;
+    public ParticleSystem damagedParticle;
 
     [Header("Movement")]
     public float movementSpeed;
@@ -77,15 +80,25 @@ public class Player : MonoBehaviour
 
     public void ChangeHp(float value) {
         curHp = Mathf.Min(maxHp, Mathf.Max(0, curHp + value));
+        UpdateHpIndicator();
+        if (value < 0)
+        {
+            damagedParticle.Emit(30);
+        }
         if (curHp <= 0)
         {
             animator.SetTrigger("Die");
         }
     }
 
+    public void UpdateHpIndicator()
+    {
+        hpIndicator.fillAmount = curHp / maxHp;
+    }
+
     public void Die()
     {
-        Debug.Log("Bro you dead.");
+        GameManager.OpenGameOverPanel();
         gameObject.SetActive(false);
     }
 }

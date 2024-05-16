@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     public Color initEnemyProjectileColor;
     public static Color playerProjectileColor;
     public static Color enemyProjectileColor;
+    public GameObject initGameoverPanel;
+    public static GameObject gameoverPanel;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +29,7 @@ public class GameManager : MonoBehaviour
         }
         playerProjectileColor = initPlayerProjectileColor;
         enemyProjectileColor = initEnemyProjectileColor;
+        gameoverPanel = initGameoverPanel;
     }
 
     // Update is called once per frame
@@ -34,13 +37,40 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            resstart();
+            LoadGame();
+        }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            LoadMenu();
+        }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Quit();
         }
     }
 
-    public void resstart()
+    public static void LoadMenu()
+    {
+        SceneManager.LoadScene(2);
+    }
+    public static void LoadTutorial()
     {
         SceneManager.LoadScene(1);
+    }
+
+    public static void LoadGame()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public static void Quit()
+    {
+        Application.Quit();
+    }
+
+    public static void OpenGameOverPanel()
+    {
+        gameoverPanel.SetActive(true);
     }
 
     public static int findNextAvailable()

@@ -166,7 +166,7 @@ MonoBehaviour:
   frontOfWeapon: {fileID: 5921822562479081906}
   projectile: {fileID: 1890490030597232510, guid: 23b8871c5652fc44893f7c1843cb957a, type: 3}
   projectileSpeed: 20
-  projectileLifeTime: 0.8
+  projectileLifeTime: 0.5
   fireRate: 0.1
   accuracyDeg: 10
-  damage: 10
+  damage: 1
