@@ -173,14 +173,9 @@ public class Enemy : MonoBehaviour
 
     public void ShootAtPlayer(GameObject projectile)
     {
-        Vector3 tmpPos = transform.position;
-        Quaternion tmpRot = Quaternion.identity;
-        transform.LookAt(Player.instance.transform.position);
         Projectile projScript = projectile.GetComponent<Projectile>();
         GameObject spawnedBullet = GameManager.spawnBullet(transform.position, lookAtPlayer(), projScript.damage, projScript.speed, projScript.lifeTime);
         spawnedBullet.transform.localScale = projectile.transform.localScale;
-        transform.position = tmpPos;
-        transform.rotation = tmpRot;
     }
 
     public Quaternion lookAtPlayer()
